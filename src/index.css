@@ -1,0 +1,290 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 240 10% 3.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 240 8% 8%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 240 8% 8%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 180 100% 50%;
+    --primary-foreground: 240 10% 3.9%;
+
+    --secondary: 270 91% 65%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 240 8% 15%;
+    --muted-foreground: 240 5% 64.9%;
+
+    --accent: 330 81% 60%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 240 8% 15%;
+    --input: 240 8% 15%;
+    --ring: 180 100% 50%;
+
+    --radius: 1rem;
+
+    --neon-cyan: 180 100% 50%;
+    --neon-purple: 270 91% 65%;
+    --neon-pink: 330 81% 60%;
+    --neon-blue: 220 91% 65%;
+
+    --gradient-primary: linear-gradient(135deg, hsl(180 100% 50% / 0.2), hsl(270 91% 65% / 0.2));
+    --gradient-secondary: linear-gradient(180deg, hsl(240 10% 3.9%), hsl(240 10% 8%));
+    --gradient-accent: linear-gradient(90deg, hsl(180 100% 50%), hsl(270 91% 65%));
+
+    --glow-cyan: 0 0 40px hsl(180 100% 50% / 0.3), 0 0 80px hsl(180 100% 50% / 0.2);
+    --glow-purple: 0 0 40px hsl(270 91% 65% / 0.3), 0 0 80px hsl(270 91% 65% / 0.2);
+    --glow-pink: 0 0 40px hsl(330 81% 60% / 0.3), 0 0 80px hsl(330 81% 60% / 0.2);
+
+    --sidebar-background: 240 10% 5%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 180 100% 50%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 180 100% 50%;
+  }
+
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 240 8% 8%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 240 8% 8%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 180 100% 50%;
+    --primary-foreground: 240 10% 3.9%;
+
+    --secondary: 270 91% 65%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 240 8% 15%;
+    --muted-foreground: 240 5% 64.9%;
+
+    --accent: 330 81% 60%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 240 8% 15%;
+    --input: 240 8% 15%;
+    --ring: 180 100% 50%;
+    --sidebar-background: 240 10% 5%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 180 100% 50%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 180 100% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Improve text readability on mobile */
+  @media (max-width: 768px) {
+    body {
+      font-size: 16px; /* Prevents iOS zoom on input focus */
+      line-height: 1.65;
+      letter-spacing: 0.01em;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+    }
+
+    /* Ensure better touch scrolling on iOS */
+    * {
+      -webkit-overflow-scrolling: touch;
+    }
+
+    /* Prevent text size adjust on orientation change */
+    html {
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
+  }
+
+  /* Extra small devices */
+  @media (max-width: 375px) {
+    body {
+      font-size: 15px;
+    }
+  }
+
+  /* Spline iframe styling */
+  .spline-iframe {
+    pointer-events: auto;
+  }
+  
+  iframe[src*="spline.design"] {
+    border: none;
+  }
+}
+
+@layer utilities {
+  /* Mobile-first touch interactions */
+  .touch-manipulation {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .glass {
+    @apply bg-card/30 backdrop-blur-xl border border-border/50;
+  }
+
+  .glow-cyan {
+    box-shadow: var(--glow-cyan);
+  }
+
+  .glow-purple {
+    box-shadow: var(--glow-purple);
+  }
+
+  .glow-pink {
+    box-shadow: var(--glow-pink);
+  }
+
+  .gradient-text {
+    @apply bg-clip-text text-transparent;
+    background-image: var(--gradient-accent);
+  }
+
+  .floating-orb {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px) scale(1); }
+    50% { transform: translateY(-20px) scale(1.05); }
+  }
+
+  .scrollbar-thin::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: hsl(var(--card));
+    border-radius: 10px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: hsl(var(--primary));
+    border-radius: 10px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--primary) / 0.8);
+  }
+
+  /* Scroll reveal animations */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .reveal-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Respect prefers-reduced-motion for accessibility */
+  @media (prefers-reduced-motion: reduce) {
+    .reveal {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+    
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  /* Mobile-specific optimizations */
+  @media (max-width: 768px) {
+    /* Optimize scroll containers for mobile */
+    .touch-pan-x {
+      -webkit-overflow-scrolling: touch;
+      scroll-behavior: smooth;
+    }
+
+    /* Larger touch targets for mobile */
+    button, a, input, select, textarea {
+      min-height: 44px;
+      min-width: 44px;
+    }
+
+    /* Reduce blur on mobile for performance */
+    .glass {
+      @apply bg-card/40 backdrop-blur-md;
+    }
+
+    /* Simpler shadows on mobile */
+    .glow-cyan, .glow-purple, .glow-pink {
+      box-shadow: none;
+      @apply border-primary/30;
+    }
+
+    /* Optimize animations for mobile */
+    * {
+      animation-duration: 0.3s !important;
+    }
+
+    /* Better spacing for mobile */
+    section {
+      @apply px-4 py-12;
+    }
+  }
+
+  /* Landscape mobile optimizations */
+  @media (max-width: 768px) and (orientation: landscape) {
+    section {
+      @apply py-8;
+    }
+  }
+}
